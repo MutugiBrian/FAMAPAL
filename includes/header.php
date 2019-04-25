@@ -1356,7 +1356,12 @@ $("#notsno").addClass("d-none");
                     
                     
                     <?php } ?>            
-                   <?php if(@$_SESSION["ut"]==1){?>                
+                   <?php if(@$_SESSION["ut"]==1){?>    
+                   <li>
+                   <a href="?page=test"  class="waves-effect <?php if(@$_REQUEST['page']=="postjob") echo "active";?> waves-effect py-0 my-0  " >
+                   <i class="fas fa-vial" aria-hidden="true"></i> SOIL TEST
+                   </a>
+                   </li>            
                    <li>
                    <a href="?page=postjob"  class="waves-effect <?php if(@$_REQUEST['page']=="postjob") echo "active";?> waves-effect py-0 my-0  " >
                    <i class="fa fa-plus" aria-hidden="true"></i> POST CROP

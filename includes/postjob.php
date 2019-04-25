@@ -2,7 +2,76 @@
  error_reporting(0);
 ini_set("display_errors", 0);
 include 'common.php';
+$imageerr='click paperclip to upload crop image';  
+$reg=0;
+$nr = 0;
+$nm = "HALLO";
+$tc = "text-danger";
  if(isset($_POST['jpost'])){
+
+
+
+
+ 
+    $target_dir = "uploads/profileimages/";
+    $now = time();
+$target_file = $target_dir.$now.basename($_FILES["image"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["image"]["tmp_name"]);
+    if($check !== false) {
+         $imageerr =  "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+         $imageerr =  "File is not an image.";
+        $uploadOk = 0;
+
+    }
+}
+
+
+
+// Check if file already exists
+if (file_exists($target_file)) {
+     $imageerr =  "Sorry, file already exists.";
+    $uploadOk = 0;
+}
+
+// Check file size
+if ($_FILES["image"]["size"] > 500000) {
+     $imageerr =  "Sorry, your file is too large.";
+    $uploadOk = 0;
+}
+
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+     $imageerr =  "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    $uploadOk = 0;
+}
+
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    $imageerr =  "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        $imageerr =  "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
+        $uploadOk = 1;
+}else {
+         $imageerr =  "Sorry, there was an error uploading your file.";
+          $uploadOk = 0;
+    }
+}
+
+
+
+
+
+if($uploadOk == 1){
 $jname = $_POST['jname']; 
 $jdesc = $_POST['jdesc']; 
 $vacs = $_POST['vacs']; 
@@ -28,7 +97,7 @@ $whole = $jloc;
 $unique = substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 6);
 list($jcity, $country) = explode(",", $whole, 2);
 $uid = $_SESSION['id'];
-$jpost = "INSERT INTO `jobs` (`id`, `uniquestr`, `name`, `title`, `description`, `pay_amount`,`pay_per`, `pay_currency`, `invoicecycle`, `vacancies`, `duration`,  `industry`, `skills`, `job_lat`, `job_long`, `city`, `country`, `posted_by`, `verified`, `edit_date`, `post_date`) VALUES (NULL, '$unique','$jname','', '$jdesc', '$jpay','$payperiod', '$jcurrency', '', '$vacs', '', '$industry', '$skills', '$jlat', '$jlong', '$jcity', '$country', '$uid', '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+$jpost = "INSERT INTO `jobs` (`id`, `uniquestr`, `name`, `title`, `description`, `cimage`, `pay_amount`,`pay_per`, `pay_currency`, `invoicecycle`, `vacancies`, `duration`,  `industry`, `skills`, `job_lat`, `job_long`, `city`, `country`, `posted_by`, `verified`, `edit_date`, `post_date`) VALUES (NULL, '$unique','$jname','', '$jdesc','$image','$jpay','$payperiod', '$jcurrency', '', '$vacs', '', '$industry', '$skills', '$jlat', '$jlong', '$jcity', '$country', '$uid', '0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
 $jparray = $conn->query($jpost);
 if ($jparray === TRUE) {
 $jid = mysql_insert_id();
@@ -78,6 +147,11 @@ $notarray = $conn->query($notify);
         $np = 0;
 }else{ 
         $jp= 0;
+        $np = 1;
+}
+}else{
+
+  $jp= 0;
         $np = 1;
 }
  
@@ -356,6 +430,75 @@ function goBack() {
   <input placeholder="Select maturity date" type="text" id="date-picker-example" class="form-control datepicker">
   <label for="date-picker-example">maturity date</label>
 </div>
+
+
+<center>
+<div id="image_preview"><img id="previewing" src="uploads/profileimages/cl.jpg" class="rounded-circle img-fluid z-depth-2"style="height:100px !important;width:100px !important;" /></div>
+ <div id="message" class="<?php echo $tc;?> text-bold font-weight-bold my-1">
+     <?php 
+     if($imageerr != ""){
+     echo $imageerr;
+     }
+     
+     ?>
+     </div>
+
+    <div class="form-group" >
+    
+    <div class="file-field big" >
+         
+        <div class="btn-floating btn-sm purple lighten-1 mt-3 float-left" >
+            <i class="fa fa-paperclip" aria-hidden="true"></i>
+             <input type="file" accept="image/*" id="image" name="image" value="uploads/profileimages/bu.png">
+         </div>
+         
+        
+        <div class="file-path-wrapper">
+           <input class="file-path validate" id="ptt" type="text" placeholder="Upload crop image" readonly="readonly">
+        </div>  
+        <div id="imagename" class="d-none"></div>
+    </div>                                           
+    
+       
+        <img id='img-upload'/>
+    </div>
+    
+</center>
+
+<script>
+                    $("#image").change(function() {
+$("#message").empty(); // To remove the previous error message
+var file = this.files[0];
+var imagefile = file.type;
+var match= ["image/jpeg","image/png","image/jpg"];
+if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+{
+$('#previewing').attr('src','noimage.png');
+$("#message").html("<p class='error'>Please Select A valid Image File</p>"+"<h4>Note</h4>"+"<span id='error_message'>Only jpeg, jpg and png Images type allowed</span>");
+return false;
+}
+else
+{
+var reader = new FileReader();
+reader.onload = imageIsLoaded;
+reader.readAsDataURL(this.files[0]);
+}
+});
+
+function imageIsLoaded(e) {
+$("#image").css("color","green");
+
+$("#ptt").removeClass("invalid");
+$("#ptt").toggleClass("valid");
+$('#image_preview').css("display", "block");
+$('#previewing').attr('src', e.target.result);
+$('#previewing').attr('width', '100px');
+$('#previewing').attr('height', '100px');
+};
+                    
+                    
+                    </script>
+
             
            <script>   
             $(document).ready(function() {
@@ -662,7 +805,7 @@ $long = $dets['reg_long'];
             
             </div>
             
-             <div class="md-form ">
+             <div class="md-form d-none">
                 
                 
                    <div class="form-group shadow-textarea ">
