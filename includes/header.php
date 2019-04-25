@@ -1237,9 +1237,9 @@ if(isset($_POST['bsb'])){
         <center>
         <i>
       <?php if($_SESSION["ut"]==1){
-      echo "- employer";
+      echo "- farmer";
       }elseif($_SESSION["ut"]==2){
-       echo "- employee";
+       echo "- buyer";
       }else{
       $cid = $_SESSION['cid'];
          echo "- contractor <br />";
@@ -1359,17 +1359,17 @@ $("#notsno").addClass("d-none");
                    <?php if(@$_SESSION["ut"]==1){?>                
                    <li>
                    <a href="?page=postjob"  class="waves-effect <?php if(@$_REQUEST['page']=="postjob") echo "active";?> waves-effect py-0 my-0  " >
-                   <i class="fa fa-plus" aria-hidden="true"></i> POST JOB
+                   <i class="fa fa-plus" aria-hidden="true"></i> POST CROP
                    </a>
                    </li>
-                   <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-briefcase"></i>MY JOBS<i class="fa fa-angle-down rotate-icon"></i></a>
+                   <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-spa"></i> MY CROPS<i class="fa fa-angle-down rotate-icon"></i></a>
                   <div class="collapsible-body">
                       <ul>
-                          <li><a href="?page=activejobs" class="waves-effect">Active Jobs</a>
+                          <li><a href="?page=activejobs" class="waves-effect">Ready Crops</a>
                           </li>
-                          <li><a href="?page=openjobs" class="waves-effect">Open Jobs</a>
+                          <li><a href="?page=openjobs" class="waves-effect">Maturing Crops</a>
                           </li>
-                          <li><a href="?page=completejobs" class="waves-effect">Completed Jobs</a>
+                          <li><a href="?page=completejobs" class="waves-effect">Sold Crops</a>
                           </li>
                       </ul>
                   </div>

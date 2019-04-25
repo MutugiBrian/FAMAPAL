@@ -11,7 +11,7 @@
         
 
 
-$imageerr='click paperclip to upload employer logo';  
+$imageerr='click paperclip to upload farmer logo';  
 $reg=0;
 $nr = 0;
 $nm = "HALLO";
@@ -155,12 +155,12 @@ if ($regarray === TRUE) {
 
 
   $to = "+254".$p1;
-  $message = "Hallo ".strtoupper($bname)." , Welcome to FAMAPAL quick hiring - you were successfully registered. Please post jobs and get employees instantly .Kindly dont engage in malpractices. Thank you , we are honoured to have you.";
+  $message = "Hallo ".strtoupper($bname)." , Welcome to FAMAPAL quick hiring - you were successfully registered. We provide soil testing and connect you with buyers.";
   sendmessage($to,$message);
 
 
 
-  $message2  =  "Hey , ".strtoupper($bname)." - ".$to. " just joined FAMAPAL as an employer";
+  $message2  =  "Hey , ".strtoupper($bname)." - ".$to. " just joined FAMAPAL as a farmer";
  sendmessage($adminno,$message2);
 
 
@@ -248,7 +248,7 @@ session_destroy();
 $recipients = $_SESSION['phone'];
 
 // Set your message
-$message    = "Hallo ".$det['fname'].", welcome to FAMAPAL , we will keep you updated with the latest job openings, Thank you and we are pleased to have you.";
+$message    = "Hallo ".$det['fname'].", welcome to FAMAPAL , we conduct soil testing and connect you with buyers early.";
 
 //Create a new Instance 
 $gateway  = new AfricasTalkingGateway($username, $apikey);
@@ -479,7 +479,7 @@ session_destroy();
     <h4 class="mx-0 my-0 p-0 h4" > 
     <a href="#" class="text-white text-left" onclick="goBack()"><i class="fa fa-arrow-circle-o-left ml-3 mr-0 mt-2 mb-0" style="font-size:30px;"aria-hidden="true"></i></a>
     <span class="text-right text-center align-middle mt-3 mr-2" style="float: right !important;font-size: 18px;margin-top: 11px !important;">
-    employer registration
+    farmer registration
     </span>
     </h4>
 
@@ -512,20 +512,11 @@ function goBack() {
                   <div class="row no-gutter">
                   <div class="row  mx-0 px-0">  
                 <!--Grid row-->
-                
-                    <div class="col-12">
-                    <div class="md-form md-outline">
-                     <i class="fas fa-briefcase prefix"></i>
-                            <input type="text" id="Bno" name="Bno" value="<?php  if(isset($_POST['Bno'])){echo $_POST['Bno'];} ?>" class="form-control">
-                            <label for="Bno" class="">Business Number</label>
-                        </div>
-                 </div>
-                
                 <div class="col-12">
                   <div class="md-form md-outline">
                      <i class="fas fa-briefcase prefix"></i>
                             <input type="text" id="Bname" name="Bname" value="<?php if(isset($_POST['Bname'])){echo $_POST['Bname'];} ?>" class="form-control">
-                            <label for="Bname" class="">Employer Name</label>
+                            <label for="Bname" class="">Username</label>
                         </div>
                   </div>
                     
@@ -539,38 +530,12 @@ function goBack() {
                         <div class="md-form md-outline">
                           <i class="fas fa-envelope prefix"></i>
                             <input type="text" id="email" name="email" value="<?php if(isset($_POST['email'])){ echo $_POST['email'];} ?>" class="form-control">
-                            <label for="email" class="">employer email</label>
+                            <label for="email" class="">farmer email</label>
                         </div>
                     </div>
                     <!--Grid column-->
 
-                     <!--Grid column-->
-                    <div class="col-12 vc" id="btborder">
-                        <div class="md-form">
-                           
-                            
-                                <select class="mdb-select colorful-select dropdown-secondary" id="btypeselect" name="btypeselect">
-                <option value="" disabled selected>Choose Employer type</option>
-      <?php 
-    
-    $industries = "SELECT * FROM businesstypes";
-    $iarray = $conn->query($industries);
-    if ($iarray->num_rows > 0) {while($row = $iarray->fetch_array()){
-    $iid = $row['id'];    
-    $iname = $row['name']; 
-    ?> 
-       <option value="<?php echo $iname;?>"><?php echo $iname;?></option>
-    <?php
-    }}else{
-    
-    echo "no industries set";
-    }  
-    ?>
-</select>
-                        </div>
-                    </div>
-                    <!--Grid column-->
-
+                    
                     
                 
                     <!--Grid column-->
@@ -673,31 +638,6 @@ function test2(){
                     </script>
 
 
-
-                    
-                     <!--Grid column-->
-                     <div class="col-12">
-                         <div class="border border-slight p-2 rounded mb-4 ig" >
-    <div class="form-group ">
-      <label for="phoneno" style="font-size:13px;">Phone Number 2</label>
-      <div class="col-auto">
-      <!-- Default input -->
-      <label class="sr-only" for="phoneno">phone number 2</label>
-      <div class="input-group ">
-        <div class="input-group-prepend" style="background-color:white !important;">
-          <div class="input-group-text font-weight-bold" style="background-color:white !important;color:<?php echo $dchex; ?>;">+254</div>
-        </div>
-        <input type="number" class="form-control py-0 " onkeyup="return test2()"  name="p2" id="p2" length="9" placeholder="- - - - - - - - - " required>
-        <div class="invalid-feedback">
-          Please enter last 9 digits for phone number 2.
-        </div>
-      </div>
-    </div>
-    </div>
-    </div>
-                    </div>
-                    <!--Grid column-->
-
                 
 
                 
@@ -717,44 +657,6 @@ function test2(){
                             
                             ?>" id="zip" name="zip" class="form-control">
 
-                    <!--Grid column-->
-                     <div class="col-12 db" id="industryborder"> 
-                <div class="">
-                <select class="mdb-select colorful-select dropdown-secondary" id="industryselect" name="industryselect">
-                <option value="" disabled selected>Choose your Industry</option>
-      <?php 
-    
-    $industries = "SELECT * FROM industries";
-    $iarray = $conn->query($industries);
-    if ($iarray->num_rows > 0) {while($row = $iarray->fetch_array()){
-    $iid = $row['id'];    
-    $iname = $row['name']; 
-    ?> 
-       <option value="<?php echo $iname;?>"><?php echo $iname;?></option>
-    <?php
-    }}else{
-    
-    echo "no industries set";
-    }  
-    ?>
-</select>
-<label class="d-none d-lg-block d-xl-block">INDUSTRY</label>
-</div>
-</div>
-               
-                <!--Grid row-->
-
-                <!--Grid row-->
-                
-                 <div class="col-md-4 ">
-                <div class="md-form ">
-                  <div class="form-group shadow-textarea ">
-    <label for="exampleFormControlTextarea6">ABOUT EMPLOYER</label>
-    <textarea class="form-control z-depth-1 vc  ta" id="about" name="about" length="200"  maxlength="200" rows="3" placeholder="Enter business vision,mission,motto etc..."></textarea>
-</div>
-            </div>
-            </div>
-            
               
                     
                 
@@ -807,7 +709,7 @@ function test2(){
          
         
         <div class="file-path-wrapper">
-           <input class="file-path validate" id="ptt" type="text" placeholder="Upload Employer Logo" readonly="readonly">
+           <input class="file-path validate" id="ptt" type="text" placeholder="Upload Farmer Logo" readonly="readonly">
         </div>  
         <div id="imagename" class="d-none"></div>
     </div>                                           
@@ -981,7 +883,7 @@ $('#previewing').attr('height', '100px');
             <div class="status"></div>
              <div class="" style="width:100% !important;margin-top: 0px !important;margin-bottom: 10px !important;">
                 <div class="mr-2 mt-0" style="margin-bottom: 0px !important;">
-                <p class="font-small  d-flex justify-content-end mt-0" style="font-weight: normal !important;">employee? <a href="?page=staffregister" class=" ml-1" style="color:<?php echo $tt; ?> !important;"><u>employee registration</u></a></p>
+                <p class="font-small  d-flex justify-content-end mt-0" style="font-weight: normal !important;">buyer? <a href="?page=staffregister" class=" ml-1" style="color:<?php echo $tt; ?> !important;"><u>buyer registration</u></a></p>
             </div> 
             </div>
         </div>
@@ -997,17 +899,13 @@ $('#previewing').attr('height', '100px');
     <script>
        $("#clientreg").click(function() {
         var bname = $("#Bname").val();
-        var btype = $("#btypeselect").val();
         var email = $("#email").val();
         var p1 = $("#p1").val();
-        var p2 = $("#p2").val();
         var add = $("#pac-input").val();
         var zip = $("#zip").val();
-        var industry = $("#industryselect").val();
         var country = $("#countryselect").val();
         var city = $("#selectcity").val();
         var image = $("#image").val();
-        var about = $("#about").val();
         var password = $("#password").val();
         var passwordc = $("#passwordc").val();
         var jlat = $("#jlat").val();
@@ -1029,16 +927,8 @@ $('#previewing').attr('height', '100px');
 if(bname === "" || bname === null){
 
  ed();
- $("#regerror").text("input business name to continue"); 
+ $("#regerror").text("input farmer name to continue"); 
  $("#Bname").toggleClass("invalid"); 
-
-
-}
-else if(btype === "" || btype === null){
-
- ed();
- $("#btborder").addClass("border border-danger"); 
- $("#regerror").text("select business type to continue"); 
 
 
 }
@@ -1049,7 +939,7 @@ else if(email === "" || email === null){
  $("#email").toggleClass("invalid"); 
 
 }
-else if(p1 === "" && p2 === ""){
+else if(p1 === "" ){
  ed();
  $("#regerror").text("input phone number to continue"); 
  $("#p1").toggleClass("invalid"); 
@@ -1060,11 +950,6 @@ else if(p1 === "" && p2 === ""){
  $("#regerror").text("enter 9 numbers only phone number"); 
  $("#p1").toggleClass("invalid"); 
 
-}else if(p2.length !== "" && p2.length !== 9){
- ed();
- $("#regerror").text("enter 9 numbers only phone number 2"); 
- $("#p2").toggleClass("invalid"); 
-
 }
 else if(add === "" || add === null){
 
@@ -1074,28 +959,10 @@ else if(add === "" || add === null){
 
 
 }
-
-else if(industry === "" || industry === null){
-
-
- ed();
- $("#regerror").text("Enter industry to continue");
- $("#industryselect").toggleClass("invalid"); 
-
-}
-
-else if(about === "" || about === null){
-
- ed();
- $("#regerror").text("Enter about section to continue");
- $("#about").addClass("border border-danger");
-
-
-}
 else if(image === "" || image === null || image === 'uploads/profileimages/cl.jpg'){
 
  ed();
- $("#regerror").text("please upload business logo to continue");
+ $("#regerror").text("please upload farmer logo to continue");
 }
 else if(password === "" || password === null){
 

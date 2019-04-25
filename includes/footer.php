@@ -33,7 +33,7 @@
       if($_SESSION['ut'] == 1){?>
 
      <a href="?page=postjob">
-        <li class="tt  tbg waves-effect <?php if($page == 'postjob'){echo "selected"; }?>"><i class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;POSTJOB </li>
+        <li class="tt  tbg waves-effect <?php if($page == 'postjob'){echo "selected"; }?>"><i class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;POSTCROP </li>
       </a>
 
 
@@ -112,15 +112,21 @@
      <div class="wow fadeInUp row rounded">
 
    <div class="col-6 text-center align-items-center text-center" style="border-right:  1px solid <?php echo $tt; ?>">
-    <i class="fas fa-hard-hat tt " style="font-size:120px;position: relative;top: 10%;"></i><br /><br />
 
-     <a href="?page=staffregister"class="btn btn-outline-primary waves-effect px-2 text-center" style="/*background-color:<?php echo $tt; ?> !important;*/border-color:<?php echo $tt; ?> !important;color:<?php echo $tt; ?> !important;">AS EMPLOYEE</a>
+    <i class="fas fa-vial  tt " style="font-size:120px;position: relative;top: 10%;"></i><br /><br />
+
+     <a href="?page=clientregister"class="btn btn-outline-primary waves-effect px-2 text-center" style="/*background-color:<?php echo $tt; ?> !important;*/border-color:<?php echo $tt; ?> !important;color:<?php echo $tt; ?> !important;">AS FARMER</a>
+   
     </div>  
 
     <div class="col-6 p-2 align-items-center text-center"  style="border-left: 1px solid <?php echo $tt; ?>">
-    <i class="fas  fa-briefcase  tt " style="font-size:110px;position: relative;top: 10%;"></i><br /><br />
 
-     <a href="?page=clientregister"class="btn btn-outline-primary waves-effect px-2 text-center" style="/*background-color:<?php echo $tt; ?> !important;*/border-color:<?php echo $tt; ?> !important;color:<?php echo $tt; ?> !important;">AS EMPLOYER</a>
+       <i class="fas fa-shopping-cart tt " style="font-size:120px;position: relative;top: 10%;"></i><br /><br />
+
+     <a href="?page=staffregister"class="btn btn-outline-primary waves-effect px-2 text-center" style="/*background-color:<?php echo $tt; ?> !important;*/border-color:<?php echo $tt; ?> !important;color:<?php echo $tt; ?> !important;">AS BUYER</a>
+    
+
+
     </div>
 
 

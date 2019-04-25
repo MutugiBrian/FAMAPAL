@@ -98,7 +98,7 @@ $img = $dets['image'];
 
 $to = "+254".$no;
 
-$sms = 'Hallo '.strtoupper($nm).' , we have good news, you just got hired by '.strtoupper($_SESSION['username']).' at FAMAPAL for a '.strtoupper($jn).' JOB ! open the app and proceed to work.';
+$sms = 'Hallo '.strtoupper($nm).' , '.strtoupper($_SESSION['username']).' from FAMAPAL informed you of '.strtoupper($jn).' crop ! open the app and follow.';
 
 
 sendmessage($to,$sms);
@@ -523,8 +523,8 @@ title: "open job - move here to check in"
 $myid = $_SESSION['id'];
 if($_SESSION['ut'] == 1 ){
 	$ft = 2;
-	$fn = 'hire';
-	$fs = 'create job to hire';
+	$fn = 'inform';
+	$fs = 'post crop to inform';
 
 
   $ev = "SELECT * FROM users WHERE id != $myid AND type = $ft AND users.id NOT IN (SELECT employeeid FROM hired WHERE employerid = $myid AND completed = 0)";
@@ -631,7 +631,7 @@ echo 'icon: "",';
   ';?>
   
 
- labelContent: "<i class='fa fa-hard-hat fa-3x' style='color:rgba(153,102,102,0.8);'></i>",
+ labelContent: "<i class='fas fa-shopping-cart fa-3x' style='color:rgba(153,102,102,0.8);'></i>",
 
  <?php echo '
 title: "'.$fs.'"
@@ -734,7 +734,7 @@ $("#modalLoginAvatar").modal();
     $iarray = $conn->query($industries);
     if ($iarray->num_rows > 0) { ?>
 
-<option value='' disabled selected>select job to hire</option>
+<option value='' disabled selected>select crop to inform</option>
     	<?php while($row = $iarray->fetch_array()){
     $iid = $row['id'];    
     $iname = $row['name']; 
@@ -745,7 +745,7 @@ $("#modalLoginAvatar").modal();
     }}else{
    
     echo "
-     <option value='0' disabled selected>create job to hire</option>
+     <option value='0' disabled selected>post crop to inform</option>
     ";
     }  
     ?>
@@ -763,7 +763,7 @@ echo'
 
 
         <div class="text-center mt-4">
-          <button name="maph" id="maph" class="btn mt-1 btn-outline-secondary" style="border-color:'.$tt.' !important;color:'.$tt.' !important;">HIRE  &nbsp;<i class="fas fa-hard-hat tt " style="font-size:17px;"></i></button>
+          <button name="maph" id="maph" class="btn mt-1 btn-outline-secondary" style="border-color:'.$tt.' !important;color:'.$tt.' !important;">INFORM  &nbsp;<i class="fas fa-shopping-cart tt " style="font-size:17px;"></i></button>
         </div>';
         ?>
 
@@ -783,7 +783,7 @@ echo'
         var j = $("#jobid").val();
         if(j === '' || j === null){
           ed();
-           $("#regerror").text("select job first"); 
+           $("#regerror").text("select crop first"); 
         }else{
           $("#hsub").click();  
         }
@@ -810,7 +810,7 @@ echo'
 
 
         <div class="text-center mt-4">
-          <button name="mapq" id="mapq" class="btn mt-1 btn-outline-secondary" style="border-color:'.$tt.' !important;color:'.$tt.' !important;">QUEUE NOW  &nbsp;<i class="fas fa-hard-hat tt " style="font-size:17px;"></i></button>
+          <button name="mapq" id="mapq" class="btn mt-1 btn-outline-secondary" style="border-color:'.$tt.' !important;color:'.$tt.' !important;">QUEUE NOW  &nbsp;<i class="fas fa-shopping-cart tt " style="font-size:17px;"></i></button>
         </div>';
         ?>
 
@@ -829,7 +829,7 @@ echo'
         var j = $("#jobid").val();
         if(j === '' || j === null){
           ed();
-           $("#regerror").text("select job first"); 
+           $("#regerror").text("select crop first"); 
         }else{
           $("#qsub").click();  
         }
@@ -1038,7 +1038,7 @@ if ($evarray->num_rows > 0) {
 <div class="card card-cascade card-ecommerce narrower m-1 mt-2 mt-5 z-depth-0 border border-secondary mb-3"  style="border-width: 2px !important; border:2px solid <?php echo $tt; ?> !important;"> 
 <div class="nd"style="margin-bottom: 0px !important;border:none !important;" >
     <h4 class="mx-0 my-0 p-0 h4" > 
-    <a href="#" class="text-white text-left" ><i class="fas fa-hard-hat tt ml-3 mr-0 mt-2 mb-0" style="font-size:30px;"aria-hidden="true"></i></a>
+    <a href="#" class="text-white text-left" ><i class="fas fa-shopping-cart tt ml-3 mr-0 mt-2 mb-0" style="font-size:30px;"aria-hidden="true"></i></a>
     <span class="text-right text-center align-middle mt-3 mr-2" style="float: right !important;font-size: 18px;margin-top: 11px !important;">
     OPEN JOBS
     </span>
@@ -1255,7 +1255,7 @@ if ($evarray->num_rows > 0) {
 <div class="card card-cascade card-ecommerce narrower m-1 mt-2 mt-5 z-depth-0 border border-secondary mb-3"  style="border-width: 2px !important; border:2px solid <?php echo $tt; ?> !important;"> 
 <div class="nd"style="margin-bottom: 0px !important;border:none !important;" >
     <h4 class="mx-0 my-0 p-0 h4" > 
-    <a href="#" class="text-white text-left" ><i class="fas fa-hard-hat tt ml-3 mr-0 mt-2 mb-0" style="font-size:30px;"aria-hidden="true"></i></a>
+    <a href="#" class="text-white text-left" ><i class="fas fa-shopping-cart tt ml-3 mr-0 mt-2 mb-0" style="font-size:30px;"aria-hidden="true"></i></a>
     <span class="text-right text-center align-middle mt-3 mr-2" style="float: right !important;font-size: 18px;margin-top: 11px !important;">
     ACTIVE JOBS
     </span>
@@ -1562,9 +1562,9 @@ if ($evarray->num_rows > 0) {
 	<div class="card card-cascade card-ecommerce narrower m-1 mt-2 mt-5 z-depth-0 border border-secondary mb-3"  style="border-width: 2px !important;"> 
 <div class="nd"style="margin-bottom: 0px !important;border:none !important;" >
     <h4 class="mx-0 my-0 p-0 h4" > 
-    <a href="#" class="text-white text-left" ><i class="fas fa-hard-hat tt ml-3 mr-0 mt-2 mb-0" style="font-size:30px;"aria-hidden="true"></i></a>
+    <a href="#" class="text-white text-left" ><i class="fas fa-shopping-cart tt ml-3 mr-0 mt-2 mb-0" style="font-size:30px;"aria-hidden="true"></i></a>
     <span class="text-right text-center align-middle mt-3 mr-2" style="float: right !important;font-size: 18px;margin-top: 11px !important;">
-    TOP EMPLOYEES
+    TOP BUYERS
     </span>
     </h4>
     </div>
@@ -1661,42 +1661,41 @@ $("#online<?php echo $uid; ?>").html(data);
                 <strong class="tt" style="font-size:25px;">welcome <?php if(isset($_SESSION['idd'])){ echo $_SESSION['username']." ,"; } ?> to <?php echo strtolower($an); ?></strong>
             </h2>
             <!--Section description-->
-   <p class="mb-5 pb-4">This is where employers meet the <b>BEST</b> labour and employees <b>QUICKLY</b>.</p>
+   <p class="mb-1 pb-4">
   <div class="row mb-r d-flex justify-content-center" >
   <div class="card-deck col-10 col-lg-12 col-xl-12 col-md-12">
 
     <div class="col-12">
 
-  <div class="wow fadeInUp row rounded" style="border: 2px solid <?php echo $tt; ?>" >
+     <div class="wow fadeInUp row rounded mt-0" style="border: 2px solid <?php echo $tt; ?>" >
    <div class="col-12 text-center align-items-center">
-    <i class="fas fa-hard-hat tt " style="font-size:130px;position: relative;top: 20%;"></i>
+    <i class="fas fa-vial tt " style="font-size:100px;position: relative;top: 20%;"></i>
     </div>  
-    <div class="col-12 p-2" style="">
+    <div class="col-12 p-3 mt-2" style="">
     <h4 class="font-bold">
-    <strong class="tt">EMPLOYEES</strong>
-    </h4>
-    <p>Join us as an  employee to get the best and nearest jobs in the fastest way possible</p>
-    <a href="?page=staffregister"class="btn btn-outline-primary waves-effect" style="background-color:<?php echo $tt; ?> !important;border-color:<?php echo $tt; ?> !important;color:<?php echo $tbg; ?> !important;"> JOIN EMPLOYEES</a>
-    </div>
-    </div>
-
-
-
-
-
-     <div class="wow fadeInUp row rounded mt-4" style="border: 2px solid <?php echo $tt; ?>" >
-   <div class="col-12 text-center align-items-center">
-    <i class="fas fa-briefcase tt " style="font-size:130px;position: relative;top: 20%;"></i>
-    </div>  
-    <div class="col-12 p-2 mt-2" style="">
-    <h4 class="font-bold">
-    <strong class="tt">EMPLOYERS</strong>
+    <strong class="tt">JOIN AS FARMER</strong>
     </h4>
     
-    <p>Join us as an  employer to find the best skill/labour in the fastest way possible</p>
-    <a href="?page=clientregister"class="btn btn-outline-primary waves-effect" style="background-color:<?php echo $tt; ?> !important;border-color:<?php echo $tt; ?> !important;color:<?php echo $tbg; ?> !important;"> JOIN EMPLOYERS</a>
+    <p>For soil analysis, crop suggestion and selling yields</p>
+    <a href="?page=clientregister"class="btn btn-outline-primary waves-effect" style="background-color:<?php echo $tt; ?> !important;border-color:<?php echo $tt; ?> !important;color:<?php echo $tbg; ?> !important;"> JOIN FARMERS</a>
     </div>
     </div>
+
+
+
+    <div class="wow fadeInUp row rounded mt-4" style="border: 2px solid <?php echo $tt; ?>" >
+   <div class="col-12 text-center align-items-center">
+    <i class="fas fa-shopping-cart tt " style="font-size:100px;position: relative;top: 20%;"></i>
+    </div>  
+    <div class="col-12 p-4" style="">
+    <h4 class="font-bold">
+    <strong class="tt">JOIN AS BUYER</strong>
+    </h4>
+    <p>To get agricultural produce early</p>
+    <a href="?page=staffregister"class="btn btn-outline-primary waves-effect" style="background-color:<?php echo $tt; ?> !important;border-color:<?php echo $tt; ?> !important;color:<?php echo $tbg; ?> !important;"> JOIN BUYERS</a>
+    </div>
+    </div>
+
 
     </div>
 
@@ -1714,407 +1713,7 @@ $("#online<?php echo $uid; ?>").html(data);
     </div>
     <!--/.Main layout--> 
     <?php } ?>  
-    
-    
-    
-<div class="modal fade" id="nismodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog cascading-modal" role="document">
-        <!--Content-->
-        <div class="modal-content">
 
-            <!--Modal cascading tabs-->
-            <div class="modal-c-tabs">
-
-                <!-- Nav tabs -->
-                <div class="nav nav-tabs md-tabs tabs-2 purple darken-3" role="tablist">
-                        <a class="nav-link text-center" data-toggle="tab" href="#panel8" role="tab"><i class="fa fa-user-plus mr-1"></i> The <?php 
-    $iid = $_SESSION['industry'];
-    $industries = "SELECT * FROM industries WHERE id = '$iid'";
-    $iarray = $conn->query($industries);
-    if ($iarray->num_rows > 0) {while($row = $iarray->fetch_array()){
-    $iid = $row['id'];    
-    $iname = $row['name']; 
-    echo $iname." Industry "; 
-    }}else{
-    
-    echo "Industry you entered";
-    }  
-    ?>  is new here, add 5 skills on it to verify. </a>
-                   
-                </div>
-
-                <!-- Tab panels -->
-                <div class="tab-content">
-                
-
-                    <!--Panel 8-->
-                    <div class="tab-pane fade in show active text-center" id="panel8" role="tabpanel">
-
-                        <!--Body-->
-                        <div class="modal-body text-center">
-
-       <form id="skillform" method="POST" action="#" class="text-center">
-    <input type="text" id="skill1" name="skill1" class="form-control mb-4 skills" placeholder="skill 1">
-    
-     <input type="text" id="skill2" name="skill2" class="form-control mb-4 skills" placeholder="skill 2">
-
-      <input type="text" id="skill3" name="skill3" class="form-control mb-4 skills" placeholder="skill 3">
-
- <input type="text" id="skill4" name="skill4" class="form-control mb-4 skills" placeholder="skill 4">
-
- <input type="text" id="skill5" name="skill5" class="form-control mb-4 skills" placeholder="skill 5">
- <button type="submit" name="skillsub" id="skillsub" class="d-none">SUBMIT</button>
- </form>
-
-
-
-
-                            <div class="text-center form-sm mt-2">
-                                <button class="btn btn-secondary darken-3" id="skillb">Add & Continue <i class="fa fa-sign-in ml-1"></i></button>
-                            </div>
-<script>
-$("#skillb").click(function (){
-var s1 = $("#skill1").val();
-var s2 = $("#skill2").val();
-var s3 = $("#skill3").val();
-var s4 = $("#skill4").val();
-var s5 = $("#skill5").val();
-
-if(s1===""||s1===null){
-    toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration":2000,
-  "timeOut": 3000,
-  "extendedTimeOut": 2000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
- Command: toastr["error"]("Enter skill 1 to continue", "NO SKILL 1 !") ;
- $(".skills").removeClass("invalid");
- $("#skill1").addClass("invalid");
-
-}
-else if(s2===""||s2===null){
-    toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration":2000,
-  "timeOut": 3000,
-  "extendedTimeOut": 2000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
- Command: toastr["error"]("Enter skill 2 to continue", "NO SKILL 2 !") ;
- $(".skills").removeClass("invalid");
- $("#skill2").addClass("invalid");
-
-}
-else if(s3===""||s3===null){
-    toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration":2000,
-  "timeOut": 3000,
-  "extendedTimeOut": 2000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
- Command: toastr["error"]("Enter skill 3 to continue", "NO SKILL 3 !") ;
- $(".skills").removeClass("invalid");
- $("#skill3").addClass("invalid");
-
-}
-else if(s4===""||s4===null){
-    toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration":2000,
-  "timeOut": 3000,
-  "extendedTimeOut": 2000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
- Command: toastr["error"]("Enter skill 4 to continue", "NO SKILL 1 !") ;
- $(".skills").removeClass("invalid");
- $("#skill4").addClass("invalid");
-
-}
-else if(s5===""||s5===null){
-    toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration":2000,
-  "timeOut": 3000,
-  "extendedTimeOut": 2000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
- Command: toastr["error"]("Enter skill 5 to continue", "NO SKILL 1 !") ;
- $(".skills").removeClass("invalid");
- $("#skill5").addClass("invalid");
-
-}else{
-$(".skills").removeClass("invalid");
-$("#skillsub").click();
-}
-
-
-});
-</script>
-
-                        </div>
-                    </div>
-                    <!--/.Panel 8-->
-                </div>
-
-            </div>
-        </div>
-        <!--/.Content-->
-    </div>
-</div>
-<!--Modal: Login / Register Form-->
-
-
-
-<div class="modal fade" id="nicmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog cascading-modal" role="document">
-        <!--Content-->
-        <div class="modal-content">
-
-            <!--Modal cascading tabs-->
-            <div class="modal-c-tabs">
-
-                <!-- Nav tabs -->
-                <div class="nav nav-tabs md-tabs tabs-2 purple darken-3" role="tablist">
-                        <a class="nav-link text-center" data-toggle="tab" href="#panel8" role="tab"><i class="fa fa-user-plus mr-1"></i> The <?php 
-    $iid = $_SESSION['industry'];
-    $industries = "SELECT * FROM industries WHERE id = '$iid'";
-    $iarray = $conn->query($industries);
-    if ($iarray->num_rows > 0) {while($row = $iarray->fetch_array()){
-    $iid = $row['id'];    
-    $iname = $row['name']; 
-    echo $iname." Industry "; 
-    }}else{
-    
-    echo "Industry you entered";
-    }  
-    ?>  is new here, add 5 sub-industries on it to verify. </a>
-                   
-                </div>
-
-                <!-- Tab panels -->
-                <div class="tab-content">
-                
-
-                    <!--Panel 8-->
-                    <div class="tab-pane fade in show active text-center" id="panel8" role="tabpanel">
-
-                        <!--Body-->
-                        <div class="modal-body text-center">
-
-       <form id="skillform" method="POST" action="#" class="text-center">
-    <input type="text" id="skill1" name="skill1" class="form-control mb-4 skills" placeholder="sub-industry 1">
-    
-     <input type="text" id="skill2" name="skill2" class="form-control mb-4 skills" placeholder="sub-industry 2">
-
-      <input type="text" id="skill3" name="skill3" class="form-control mb-4 skills" placeholder="sub-industry 3">
-
- <input type="text" id="skill4" name="skill4" class="form-control mb-4 skills" placeholder="sub-industry 4">
-
- <input type="text" id="skill5" name="skill5" class="form-control mb-4 skills" placeholder="sub-industry 5">
- <button type="submit" name="subisub" id="subisub" class="d-none">SUBMIT</button>
- </form>
-
-
-
-
-                            <div class="text-center form-sm mt-2">
-                                <button class="btn btn-secondary darken-3" id="skillb">Add & Continue <i class="fa fa-sign-in ml-1"></i></button>
-                            </div>
-<script>
-$("#skillb").click(function (){
-var s1 = $("#skill1").val();
-var s2 = $("#skill2").val();
-var s3 = $("#skill3").val();
-var s4 = $("#skill4").val();
-var s5 = $("#skill5").val();
-
-if(s1===""||s1===null){
-    toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration":2000,
-  "timeOut": 3000,
-  "extendedTimeOut": 2000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
- Command: toastr["error"]("Enter sub-industry 1 to continue", "NO SUB-INDUSTRY 1 !") ;
- $(".skills").removeClass("invalid");
- $("#skill1").addClass("invalid");
-
-}
-else if(s2===""||s2===null){
-    toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration":2000,
-  "timeOut": 3000,
-  "extendedTimeOut": 2000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
- Command: toastr["error"]("Enter sub-industry 2 to continue", "NO SUB-INDUSTRY 2 !") ;
- $(".skills").removeClass("invalid");
- $("#skill2").addClass("invalid");
-
-}
-else if(s3===""||s3===null){
-    toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration":2000,
-  "timeOut": 3000,
-  "extendedTimeOut": 2000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
- Command: toastr["error"]("Enter sub-industry 3 to continue", "NO SUB-INDUSTRY 3 !") ;
- $(".skills").removeClass("invalid");
- $("#skill3").addClass("invalid");
-
-}
-else if(s4===""||s4===null){
-    toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration":2000,
-  "timeOut": 3000,
-  "extendedTimeOut": 2000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
- Command: toastr["error"]("Enter sub-industry 4 to continue", "NO SUB-INDUSTRY 4 !") ;
- $(".skills").removeClass("invalid");
- $("#skill4").addClass("invalid");
-
-}
-else if(s5===""||s5===null){
-    toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration":2000,
-  "timeOut": 3000,
-  "extendedTimeOut": 2000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
- Command: toastr["error"]("Enter sub-industry 5 to continue", "NO SUB-INDUSTRY 5!") ;
- $(".skills").removeClass("invalid");
- $("#skill5").addClass("invalid");
-
-}else{
-$(".skills").removeClass("invalid");
-$("#skillsub").click();
-}
-
-
-});
-</script>
-
-                        </div>
-                    </div>
-                    <!--/.Panel 8-->
-                </div>
-
-            </div>
-        </div>
-        <!--/.Content-->
-    </div>
-</div>
-<!--Modal: Login / Register Form-->
-      
 <script type="text/javascript">
   $(function () {
 $('[data-toggle="tooltip"]').tooltip()

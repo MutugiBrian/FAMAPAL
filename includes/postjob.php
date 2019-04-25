@@ -163,7 +163,7 @@ $(location).attr("href","?page=openjobs");
     <h4 class="mx-0 my-0 p-0 h4" > 
     <a href="#" class="text-white text-left" onclick="goBack()"><i class="fa fa-arrow-circle-o-left ml-3 mr-0 mt-2 mb-0" style="font-size:30px;"aria-hidden="true"></i></a>
     <span class="text-right text-center align-middle mt-3 mr-2 font-weight-bold" style="float: right !important;font-size: 18px;margin-top: 11px !important;">
-    posting job
+    posting crop
     </span>
     </h4>
 
@@ -190,8 +190,8 @@ function goBack() {
             <!-- Name -->
             <div class="md-form mt-3">
                   <div class="form-group shadow-textarea ">
-    <label for="exampleFormControlTextarea6">Job Name</label>
-    <textarea class="form-control z-depth-1  ta" id="jname" name="jname" length="30"  maxlength="30" rows="3" placeholder="Enter job name here..."></textarea>
+    <label for="exampleFormControlTextarea6">Crop Name</label>
+    <textarea class="form-control z-depth-1  ta" id="jname" name="jname" length="30"  maxlength="30" rows="3" placeholder="Enter crop name here..."></textarea>
 </div>
             </div>
             
@@ -207,8 +207,8 @@ function goBack() {
              
             <div class="md-form ">
                 <div class="form-group shadow-textarea ">
-    <label for="exampleFormControlTextarea6">Job Description</label>
-    <textarea class="form-control z-depth-1 ta" name="jdesc" id="jdesc" length="200"  maxlength="200" rows="3" placeholder="Describe your job here..."></textarea>
+    <label for="exampleFormControlTextarea6">Crop Description</label>
+    <textarea class="form-control z-depth-1 ta" name="jdesc" id="jdesc" length="200"  maxlength="200" rows="3" placeholder="Describe your crop here..."></textarea>
 </div>
             </div>
             
@@ -220,7 +220,7 @@ function goBack() {
         <!-- Grid column -->
         <div class="col-4">
              <div class="form-group shadow-textarea ">
-    <label for="exampleFormControlTextarea6">PAYMENT</label>
+    <label for="exampleFormControlTextarea6">PRICE</label>
     <textarea class="form-control z-depth-1 ta" id="jpay" name="jpay" length="30"  maxlength="30" rows="1" placeholder="0" onkeyup="checkInput(this)"></textarea>
 </div>
         </div>
@@ -283,7 +283,7 @@ function goBack() {
     <div class="col-12">
      <div class="md-form">
                             <input type="number" id="vacs" name="vacs" class="form-control">
-                            <label for="password" class="">VACANCIES NO.</label>
+                            <label for="password" class="">QUANTITY(kgs).</label>
                         </div>
     </div>
     
@@ -331,7 +331,7 @@ function goBack() {
             <div class="md-form">
                    <div class="">
                 <select class="mdb-select colorful-select dropdown-secondary" id="industryselect" name="industryselect">
-                <option value="" disabled >Choose your Industry</option>
+                <option value="" disabled >Choose Crop Type</option>
       <?php 
     
     $industries = "SELECT * FROM industries";
@@ -344,36 +344,18 @@ function goBack() {
     <?php
     }}else{
     
-    echo "no industries set";
+    echo "no crop types set";
     }  
     ?>
 </select>
 </div>
             </div>
-            
-            <div class="md-form ">
-              <select class="mdb-select colorful-select dropdown-secondary" style="text-align:center;"multiple searchable="Search Skill.." id="skillselect" name="skillselect[]">
-    <option value="0" disabled selected>Select Skills</option> 
 
-    <?php 
 
-    $iid = $_SESSION['industry'];
-    
-    $skills = "SELECT * FROM skills WHERE industry_id = $iid";
-    $iarray = $conn->query($skills);
-    if ($iarray->num_rows > 0) {while($row = $iarray->fetch_array()){
-    $sid = $row['id'];    
-    $sname = $row['name']; 
-    ?> 
-       <option value="<?php echo $sid;?>"><?php echo $sname;?></option>
-    <?php
-    }}else{
-    
-    echo "no skills set";
-    }  
-    ?>
-</select> 
-            </div>
+            <div class="md-form">
+  <input placeholder="Select maturity date" type="text" id="date-picker-example" class="form-control datepicker">
+  <label for="date-picker-example">maturity date</label>
+</div>
             
            <script>   
             $(document).ready(function() {
@@ -422,7 +404,7 @@ $("#contselect").load("ajax/filtercontractors.php?f="+fff+"&i="+ind);
 
       <!--Card image-->
       <div class="view view-cascade gradient-card-header blue-gradient mb-0" style="height:auto !important;">
-        <h5 class="mb-0">Set Job Location</h5>
+        <h5 class="mb-0">Set crop Location</h5>
       </div>
       <!--/Card image-->
 
@@ -619,7 +601,7 @@ var marker = new google.maps.Marker({
     label: {
     color : "green",
     fontWeight: "bold",
-    text: "Move this pin to job location"
+    text: "Move this pin to crop location"
     },       
     draggable:true,
     title:"Drag me!"
@@ -684,7 +666,7 @@ $long = $dets['reg_long'];
                 
                 
                    <div class="form-group shadow-textarea ">
-    <label for="exampleFormControlTextarea6">Job Location - <?php if(isset($_COOKIE['reallat'])){ ?> <span style="color:red;font-weight: bold;">USES CURRENT LOCATION </span>
+    <label for="exampleFormControlTextarea6">Location - <?php if(isset($_COOKIE['reallat'])){ ?> <span style="color:red;font-weight: bold;">USES CURRENT LOCATION </span>
       <?php } ?></label>
     <textarea class="form-control z-depth-1 border border-secondary text-secondary font-weight-bold" id="jloc"  name="jloc"  maxlength="6" rows="1" value="<?php echo $city.','.$country; ?>" readonly>
     <?php echo $city.','.$country;?>
@@ -704,16 +686,9 @@ $long = $dets['reg_long'];
            <button type="submit" name="jpost" id="jpost" class="d-none">D POST</button>
 
         </form>
-        <!-- Form -->
-        <!-- <center>
-            <button class="btn btn-outline btn-outline-secondary wow fadeInUp z-depth-1 font-weight-bold"  style="width:50%;border-color:<?php echo $tt; ?> !important;color:<?php echo $tt; ?> !important;">
-            <i class="fa fa-check" aria-hidden="true"></i>&nbsp;
-            POST JOB </button> 
-            </center>  -->
-
 
             <center>
-        <button class="btn btn-rounded   btn-block z-depth-0 my-4 waves-effect font-weight-bold"id="pj" name="pj" style="width:50% !important;background-color: <?php echo $tt; ?>;" ><i class="fa fa-check" aria-hidden="true"></i>&nbsp;POST JOB</button>
+        <button class="btn btn-rounded   btn-block z-depth-0 my-4 waves-effect font-weight-bold"id="pj" name="pj" style="width:50% !important;background-color: <?php echo $tt; ?>;" ><i class="fa fa-check" aria-hidden="true"></i>&nbsp;POST CROP</button>
         </center> 
       
 
@@ -762,13 +737,13 @@ var conts = $("#contselect").val();
 if(jname === "" || jname === null){
 
  ed();
- $("#regerror").text("input job name to continue"); 
+ $("#regerror").text("input crop name to continue"); 
  $("#jname").addClass("border border-danger");
 
 }else if(jdesc === "" || jdesc === null){
 
  ed();
- $("#regerror").text("input job description to continue"); 
+ $("#regerror").text("input crop description to continue"); 
  $("#jdesc").addClass("border border-danger");
 
 
@@ -777,7 +752,7 @@ if(jname === "" || jname === null){
 else if(jpay === "" || jpay === null || jpay === 0){
 
 ed();
- $("#regerror").text("input job pay to continue"); 
+ $("#regerror").text("input crop price to continue"); 
  $("#jpay").addClass("border border-danger");
 
 
@@ -792,14 +767,14 @@ else if(jcur === "" || jcur === null){
 }else if(vacs === "" || vacs === null){
 
  ed();
- $("#regerror").text("enter vacancies to continue"); 
+ $("#regerror").text("enter quantity to continue"); 
   $("#vacs").addClass("invalid");
 
 
 }else if(industry === "" || industry === null){
 
 ed();
- $("#regerror").text("select an industry to continue");  
+ $("#regerror").text("select crop type to continue");  
   $("#industryselect").addClass("invalid");
 
 }

@@ -132,7 +132,7 @@ $password = md5($password);
         $long = $_POST['jlong'];
       }
         /*$about = $_POST['about'];*/
-        $about = "A valued employee at FAMAPAL";
+        $about = "A valued buyer at FAMAPAL";
         
         
 
@@ -229,12 +229,12 @@ $recipients = "+254".$_SESSION['phone'];
 $recipient = "254".$_SESSION['phone'];
 
 // Set your message
-$message    = "Hallo ".strtoupper($det['fname'])." , Welcome to FAMAPAL  quick hiring - You were successfully registered. We will keep you updated with the latest job openings, Please select and employer and queue to get hired. Kindly, dont engage in malpractices. Thank you and we are pleased to have you. All the best.";
+$message    = "Hallo ".strtoupper($det['fname'])." , Welcome to FAMAPAL we will connect you with farmers promptly";
 
 sendmessage($recipients,$message);
 
 
-$message2  =  "Hey , ".strtoupper($det['fname'])." - ".$recipients. " just joined FAMAPAL as an employee";
+$message2  =  "Hey , ".strtoupper($det['fname'])." - ".$recipients. " just joined FAMAPAL as a buyer";
 sendmessage($adminno,$message2);
 
 //Create a new Instance 
@@ -425,7 +425,7 @@ session_destroy();
     <h4 class="mx-0 my-0 p-0 h4" > 
     <a href="#" class="text-white text-left" onclick="goBack()"><i class="fa fa-arrow-circle-o-left ml-3 mr-0 mt-2 mb-0" style="font-size:30px;"aria-hidden="true"></i></a>
     <span class="text-right text-center align-middle mt-3 mr-2" style="float: right !important;font-size: 18px;margin-top: 11px !important;">
-    employee registration
+    buyer registration
     </span>
     </h4>
 
@@ -476,20 +476,12 @@ function goBack() {
 <div class="md-form md-outline">
   <i class="fas fa-user prefix"></i>
   <input type="text"  value="<?php if(isset($_POST['fname'])){echo $_POST['fname'];} ?>" id="fname" name="fname" class="form-control " required>
-  <label for="fname">Firstname</label>
+  <label for="fname">Username</label>
 </div>
                     </div>
                     <!--Grid column-->
                     
                      <!--Grid column-->
-                    <div class="col-12">
-                        <div class="md-form md-outline">
-  <i class="fas fa-user prefix"></i>
-  <input type="text" id="lname"  value="<?php if(isset($_POST['lname'])){echo $_POST['lname'];} ?>" name="lname" class="form-control" required>
-  <label for="lname">Lastname</label>
-</div>
-       
-                    </div>
                     <!--Grid column-->
 
                    
@@ -506,19 +498,6 @@ function goBack() {
 
                     </div>
                     <!--Grid column-->
-
-                    <div class="col-12 db" id="genderborder"> 
-                <div class="">
-                    <select class="mdb-select colorful-select dropdown-secondary" id="genderselect" name="genderselect">
-                <option value="" disabled selected>Select your gender</option>
-                <option value="male">male</option>
-                <option value="female">female</option>
-              </select>
-            </div>
-          </div>
-                    
-                
-                    
                     <!--Grid column-->
                     <div class="col-12">
                          <div class="border border-slight p-2 rounded mb-4 ig" >
@@ -639,57 +618,16 @@ function test2(){
                             
                 <!--Grid row-->
                 
-                <!--Grid row-->
-                <div class="col-12 db" id="industryborder"> 
-                <div class="">
-                <select class="mdb-select colorful-select dropdown-secondary" id="industryselect" name="industryselect">
-                <option value="" disabled selected>Choose your Industry</option>
-      <?php 
-    
-    $industries = "SELECT * FROM industries";
-    $iarray = $conn->query($industries);
-    if ($iarray->num_rows > 0) {while($row = $iarray->fetch_array()){
-    $iid = $row['id'];    
-    $iname = $row['name']; 
-    ?> 
-       <option value="<?php echo $iid;?>"><?php echo $iname;?></option>
-    <?php
-    }}else{
-    
-    echo "no industries set";
-    }  
-    ?>
-</select>
-<label class="d-none d-lg-block d-xl-block">INDUSTRY</label>
-</div>
-</div>
+               
 
                     <!--Grid column-->
-                    <div class="col-12 db"  id="skillsborder">   
-                    
-                    
-                                            
-<select class="mdb-select colorful-select dropdown-secondary" style="text-align:center;"multiple searchable="Search Skill.." id="skillselect" name="skillselect[]">
-    <option value="" disabled selected>Select Industry First</option> 
-</select> 
-<label class="d-none d-lg-block d-xl-block">SKILLS</label> 
-            
- 
- 
- 
- 
- 
-            
-
-                    </div>
-
                 <!--Grid row-->
                 
                 <div class="col-md-4 d-none">
                 <div class="md-form ">
                   <div class="form-group shadow-textarea ">
     <label for="exampleFormControlTextarea6">ABOUT ME</label>
-    <textarea class="form-control z-depth-1  ta" id="about" name="about" length="200"  maxlength="200" rows="3" placeholder="Describe yourself,experience,achievements etc..." value="employee at FAMAPAL">employee at FAMAPAL</textarea>
+    <textarea class="form-control z-depth-1  ta" id="about" name="about" length="200"  maxlength="200" rows="3" placeholder="Describe yourself,experience,achievements etc..." value="buyer at FAMAPAL">buyer at FAMAPAL</textarea>
 </div>
             </div>
             </div>
@@ -1181,22 +1119,15 @@ $('#previewing').attr('height', '100px');
             $("#staffreg").click(function() {
 
 
-             
-            var contid = $("#cont_id").val();
-            var fname = $("#fname").val();
-            var lname = $("#lname").val();
+            var uname = $("#fname").val();
             var email = $("#email").val();
             var p1 = $("#p1").val();
-            var p2 = $("#p2").val();
             var add = $("#pac-input").val();
             var zip = $("#zip").val();
             var country = $("#countryselect").val();
             var city = $("#selectcity").val();
-            var industry = $("#industryselect").val();
-            var skills = $("#skillselect").val().toString(); 
             var about = $("#about").val();
             var image = $("#image").val();
-            var cv = $("#resume").val();
             var password = $("#password").val();
             var passwordc = $("#passwordc").val(); 
             var imagename = $("#ptt").val(); 
@@ -1216,18 +1147,11 @@ $('#previewing').attr('height', '100px');
 
 
 
-if(fname === "" || fname === null){ 
+if(uname === "" || uname === null){ 
 
  ed();
  $("#fname").toggleClass("invalid"); 
- $("#regerror").text("input first name to continue"); 
-
-}
-else if(lname === "" || lname === null){ 
-
-ed();
- $("#lname").toggleClass("invalid"); 
- $("#regerror").text("input last name to continue"); 
+ $("#regerror").text("input username to continue"); 
 
 }else if(email === "" || email === null){ 
 
@@ -1273,15 +1197,6 @@ ed();
  $("#about").addClass("border border-danger"); 
 
 
-}else if(industry === "" || industry === null){ 
-ed();
- $("#industryborder").addClass("border border-danger"); 
- $("#regerror").text("select your industry to continue"); 
-  
-}else if(skills === "" || skills === null || skills === 0){ 
-ed();
- $("#skillsborder").addClass("border border-danger"); 
- $("#regerror").text("select your skills to continue"); 
 }else if(jlat === "" || jlat === null || jlong === "" || jlong === null ){ 
 
 ed();
@@ -1344,7 +1259,7 @@ $("#fsub").click();
             <div class="status"></div>
                <div class="" style="width:100% !important;margin-top: 0px !important;margin-bottom: 9% !important;">
                 <div class="mr-2 mt-0" style="margin-bottom: 0px !important;">
-                <p class="font-small  d-flex justify-content-end mt-0" style="font-weight: normal !important;">employer? <a href="?page=clientregister" class=" ml-1" style="color:<?php echo $tt; ?> !important;"><u>employer registration</u></a></p>
+                <p class="font-small  d-flex justify-content-end mt-0" style="font-weight: normal !important;">farmer? <a href="?page=clientregister" class=" ml-1" style="color:<?php echo $tt; ?> !important;"><u>farmer registration</u></a></p>
             </div> 
             </div>
         </div>

@@ -3,18 +3,11 @@ $an = "FAMAPAL";
 $as = "quick hiring app";
 /*$tt = '#30BA6D';*///-GREEN
 
-$cl =  $_SESSION['color'];
-if($cl == 'blue'){
-	$tt = '#367BC3';
-		$tt2 = '#367BC3';
-}elseif($cl == 'purple'){
-   $tt ="#B233CC";
-   $tt2 ="#B233CC";
-}else{
+
 	$tt = '#178943';
 	$tt2 = '#178943'; //A DARKER VERSION ON tt1
 $tt2 = '#30BA6D';
-}
+
 //NEW DARK
 /*$tt ='#337FCC';*///-BLUE
 /*$tt ="#0088CC";*///-CLOSE TO CYAN BLUE
